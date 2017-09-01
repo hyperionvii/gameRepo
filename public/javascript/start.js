@@ -86,8 +86,8 @@ $(document).ready(function() {
       // dealtHandAppearsOnScreen();
 
 
-      users.push([{id: 43}]);
-      usersRef.set(users);
+      users.push({id: 43});
+      usersRef.set({id: 55});
 	});
 
 
