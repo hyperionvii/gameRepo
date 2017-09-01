@@ -36,23 +36,22 @@ $(document).ready(function() {
 	  firebase.initializeApp(config);
 
 	var database = firebase.database();
-  var usersRef = database.ref('users');
-  usersRef.set([{id: 1}]);
-  var users = [];
+  var users = database.ref('users');
 
   database.ref().on("value", function(childSnapshot) {
     var data = childSnapshot.val();
     var usersCount;
     console.log(data);
 
-    users = data.users;
-
-    if (data && data.users) {
-        usersCount = data.users.length;
-        $('playerCount').text(usersCount);
-    }
+    // users = data.users;
+    //
+    // if (data && data.users) {
+    //     usersCount = data.users.length;
+    //     $('playerCount').text(usersCount);
+    // }
   });
 
+  var idCount = 1;
 
 	$(document).on("click", '#start', function(event) {
 
@@ -86,8 +85,11 @@ $(document).ready(function() {
       // dealtHandAppearsOnScreen();
 
 
-      users.push({id: 43});
-      usersRef.set({id: 55});
+      database.ref('users/' + idCount).set({
+			  	name: 'geydffd'
+		  });
+
+      idCount++;
 	});
 
 
@@ -125,7 +127,7 @@ $(document).ready(function() {
 
 
 		function writeUserData() {
-		  database.ref().set({
+		  database.ref('users/' + idCount).set({
 			  	"player": []
 		  });
 
