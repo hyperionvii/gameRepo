@@ -36,12 +36,16 @@ $(document).ready(function() {
 	  firebase.initializeApp(config);
 
 	var database = firebase.database();
-  var users = database.ref('users');
+  var usersRef = database.ref('users');
+  usersRef.set([{id: 1}]);
+  var users = [];
 
   database.ref().on("value", function(childSnapshot) {
     var data = childSnapshot.val();
     var usersCount;
     console.log(data);
+
+    users = data.users;
 
     if (data && data.users) {
         usersCount = data.users.length;
@@ -82,7 +86,8 @@ $(document).ready(function() {
       // dealtHandAppearsOnScreen();
 
 
-      users.push({id: 42});
+      users.push([{id: 43}]);
+      usersRef.set(users);
 	});
 
 
