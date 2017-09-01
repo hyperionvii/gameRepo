@@ -36,7 +36,6 @@ $(document).ready(function() {
 	  firebase.initializeApp(config);
 
 	var database = firebase.database();
-  var users = database.ref('users');
 
   database.ref().on("value", function(childSnapshot) {
     var data = childSnapshot.val();
@@ -51,7 +50,7 @@ $(document).ready(function() {
     // }
   });
 
-  var idCount = 1;
+  var idCount = 0;
 
 	$(document).on("click", '#start', function(event) {
 
@@ -85,11 +84,11 @@ $(document).ready(function() {
       // dealtHandAppearsOnScreen();
 
 
-      database.ref('users/' + idCount).set({
-			  	name: 'geydffd'
-		  });
-
-      idCount++;
+      // database.ref('users/' + idCount).set({
+			//   	name: 'geydffd'
+		  // });
+      //
+      // idCount++;
 	});
 
 
@@ -164,6 +163,14 @@ $(document).ready(function() {
 		cardSelected = $(this).html();
 		updateCardsWithSelected(cardSelected);
 	});
+
+  $('#register-user').click(function() {
+    database.ref('people/' + idCount).set({
+        username: $('#username-input').val()
+    });
+
+    idCount++;
+  });
 
 ///
 
