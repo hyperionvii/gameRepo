@@ -103,23 +103,22 @@ $(document).ready(function() {
 	}
 
 	//I loop through users and deal them their cards and initial score
-	function updateUserInfoToFirebase(players, hand) {
+	function updateUserInfoToFirebase() {
 
 		//loops through all the users and updates their info in firebase
 
-		for(var i = 0; i < players.length; i++) {
+		// for(var i = 0; i < players.length; i++) {
 
-	   	  var player = players[i];
+	 //   	  var player = players[i];
 
-	   	  writeUserData(player, hand);
+	   	  writeUserData();
 
-		};
+		// };
 
-		function writeUserData(player, hand) {
-		  database.ref(player).set({
-			  	"hand": hand,
-			  	"username": player,
-				"points": 0
+
+		function writeUserData() {
+		  database.ref().set({
+			  	"player": []
 		  });
 
 		};
