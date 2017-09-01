@@ -36,11 +36,12 @@ $(document).ready(function() {
 	  firebase.initializeApp(config);
 
 	var database = firebase.database();
-
+  var users = database.ref('users');
 
   database.ref().on("value", function(childSnapshot) {
     var data = childSnapshot.val();
     var usersCount;
+    console.log(data);
 
     if (data && data.users) {
         usersCount = data.users.length;
@@ -61,25 +62,27 @@ $(document).ready(function() {
 	//    -     everyone starts with 0 points
 	//2) screen should update with the correct card information depending on user (WC and BC)
 	//3)
-
-
-      event.preventDefault();
+      // users.push(42);
+      //
+      //
+      // event.preventDefault();
 
     //1)
     //firebase is updated with white and black cards
-      updateCardsToFirebase(cardsFromSql, whiteCardsFromSql);
+      // updateCardsToFirebase(cardsFromSql, whiteCardsFromSql);
     //firebase is updated with user information(user length is set to 4 to make this happen.  We will need to change it so that once 4 users are logged in, it auto starts)
-      pull8Cards(updateUserInfoToFirebase(players, hand));
+      // pull8Cards(updateUserInfoToFirebase(players, hand));
 
     //2) screen is updated with info from firebase
 
     //black card is played
-      singleBlackCardPlayed();
+      // singleBlackCardPlayed();
 
     //white cards appear on screen
-      dealtHandAppearsOnScreen();
+      // dealtHandAppearsOnScreen();
 
 
+      users.push({id: 42});
 	});
 
 
